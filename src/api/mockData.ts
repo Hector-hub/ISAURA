@@ -4,6 +4,18 @@ import { Alert } from "../store/slices/alertsSlice";
 // Datos reales estáticos de redes sociales
 const realAlertsData = [
   {
+    post_id: "1953815937972404231",
+    date: "Sun, 02 Feb 2025 18:15:00 GMT",
+    author: "@CarmenO26657205",
+    content:
+      "Paso elevado entre Av. Winston Churchill y Av. John F. Kennedy severamente agrietado. Riesgo de falla estructural inminente. ¡Jet Set necesita otro préstamo para el desastre! #InfraestructuraEnRiesgo #SantoDomingo",
+    location: { lat: 18.482447, lng: -69.945985 },
+    link: "https://x.com/CarmenO26657205/status/1953815937972404231",
+    tag: "[suceso actual]",
+    description:
+      "La imagen muestra un paso elevado severamente agrietado que conecta la Avenida Winston Churchill y la Avenida John F. Kennedy en Santo Domingo, República Dominicana, destacando los riesgos potenciales de falla estructural, una preocupación respaldada por un estudio de 2023 de la Universidad de Puerto Rico que encontró que el 15% de la infraestructura del Caribe está en riesgo debido al mantenimiento inadecuado y la actividad sísmica. La mención sarcástica del post sobre 'Jet Set' y 'otro préstamo para el desastre' alude a escándalos históricos de corrupción, como el caso de sobornos de Lockheed en los años 70 donde los préstamos gubernamentales enmascaraban la mala gestión, sugiriendo escepticismo público sobre el mal uso de fondos en reparaciones de infraestructura. Los datos de transporte local de Moovit indican que esta sección elevada es un centro crítico de rutas de autobús, sirviendo líneas como 100B y 47, lo que implica que su deterioro podría interrumpir los desplazamientos diarios de miles de personas, amplificando la urgencia del problema.",
+  },
+  {
     post_id: "1910293459056947325",
     date: "Fri, 13 Apr 2024 13:45:00 GMT",
     author: "@HazimNoelia",
@@ -74,18 +86,6 @@ const realAlertsData = [
     tag: "[evento histórico]",
     description:
       "La publicación de Leonardo Jaquez documenta las inundaciones generalizadas que afectaron múltiples sectores de Santo Domingo en noviembre de 2023. Este evento histórico sirve como referencia importante para la evaluación de riesgos y el desarrollo de estrategias de mitigación para eventos similares futuros.",
-  },
-  {
-    post_id: "1953815937972404231",
-    date: "Sun, 02 Feb 2025 18:15:00 GMT",
-    author: "@CarmenO26657205",
-    content:
-      "Paso elevado entre Av. Winston Churchill y Av. John F. Kennedy severamente agrietado. Riesgo de falla estructural inminente. ¡Jet Set necesita otro préstamo para el desastre! #InfraestructuraEnRiesgo #SantoDomingo",
-    location: { lat: 18.482447, lng: -69.945985 },
-    link: "https://x.com/CarmenO26657205/status/1953815937972404231",
-    tag: "[suceso actual]",
-    description:
-      "La imagen muestra un paso elevado severamente agrietado que conecta la Avenida Winston Churchill y la Avenida John F. Kennedy en Santo Domingo, República Dominicana, destacando los riesgos potenciales de falla estructural, una preocupación respaldada por un estudio de 2023 de la Universidad de Puerto Rico que encontró que el 15% de la infraestructura del Caribe está en riesgo debido al mantenimiento inadecuado y la actividad sísmica. La mención sarcástica del post sobre 'Jet Set' y 'otro préstamo para el desastre' alude a escándalos históricos de corrupción, como el caso de sobornos de Lockheed en los años 70 donde los préstamos gubernamentales enmascaraban la mala gestión, sugiriendo escepticismo público sobre el mal uso de fondos en reparaciones de infraestructura. Los datos de transporte local de Moovit indican que esta sección elevada es un centro crítico de rutas de autobús, sirviendo líneas como 100B y 47, lo que implica que su deterioro podría interrumpir los desplazamientos diarios de miles de personas, amplificando la urgencia del problema.",
   },
 ];
 
