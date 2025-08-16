@@ -116,7 +116,8 @@ export default function HistoricalView() {
   };
 
   return (
-    <div className="h-full flex flex-col space-y-6 p-6">
+    <div className="h-full overflow-y-auto">
+      <div className="space-y-6 p-6">
       {/* Header */}
       <div className="bg-white p-6 rounded-lg shadow-md">
         <div className="flex justify-between items-center">
@@ -351,6 +352,7 @@ export default function HistoricalView() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
