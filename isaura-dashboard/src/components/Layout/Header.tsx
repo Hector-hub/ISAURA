@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import { setSearchQuery } from '../../store/slices/uiSlice';
-import {
-  Search,
-  Bell,
-  Filter,
-  Calendar,
-  MapPin,
-} from 'lucide-react';
+import React, { useState } from "react";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { setSearchQuery } from "../../store/slices/uiSlice";
+import { Search, Bell, Filter, Calendar, MapPin } from "lucide-react";
 
 export default function Header() {
-  const { searchQuery, activeView } = useAppSelector(state => state.ui);
-  const { alerts } = useAppSelector(state => state.alerts);
+  const { searchQuery, activeView } = useAppSelector((state) => state.ui);
+  const { alerts } = useAppSelector((state) => state.alerts);
   const dispatch = useAppDispatch();
-  
+
   const [showDatePicker, setShowDatePicker] = useState(false);
-  
-  const unreadAlerts = alerts.filter(alert => 
-    alert.severity === 'critical' || alert.severity === 'high'
+
+  const unreadAlerts = alerts.filter(
+    (alert) => alert.severity === "critical" || alert.severity === "high"
   ).length;
 
   const getViewTitle = () => {
     switch (activeView) {
-      case 'realtime': return 'Monitoreo en Tiempo Real';
-      case 'predictive': return 'Análisis Predictivo';
-      case 'historical': return 'Datos Históricos';
-      default: return 'Dashboard';
+      case "realtime":
+        return "Monitoreo en Tiempo Real";
+      case "predictive":
+        return "Análisis Predictivo";
+      case "historical":
+        return "Datos Históricos";
+      default:
+        return "Dashboard";
     }
   };
 
@@ -34,7 +32,6 @@ export default function Header() {
       <div className="flex items-center justify-between">
         {/* Left Section */}
         <div className="flex items-center space-x-4">
-          <h1 className="text-2xl font-bold text-navy-900">{getViewTitle()}</h1>
           <div className="flex items-center space-x-2 text-sm text-gray-500">
             <MapPin className="w-4 h-4" />
             <span>Santo Domingo, RD</span>
@@ -58,7 +55,7 @@ export default function Header() {
         {/* Right Section */}
         <div className="flex items-center space-x-4">
           {/* Date Range Picker */}
-          {activeView === 'historical' && (
+          {activeView === "historical" && (
             <button
               onClick={() => setShowDatePicker(!showDatePicker)}
               className="flex items-center space-x-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
@@ -79,7 +76,7 @@ export default function Header() {
             <Bell className="w-5 h-5 text-gray-600" />
             {unreadAlerts > 0 && (
               <span className="absolute -top-1 -right-1 bg-alert-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                {unreadAlerts > 9 ? '9+' : unreadAlerts}
+                {unreadAlerts > 9 ? "9+" : unreadAlerts}
               </span>
             )}
           </button>
@@ -87,7 +84,9 @@ export default function Header() {
           {/* Status Indicator */}
           <div className="flex items-center space-x-2 px-3 py-2 bg-green-50 rounded-lg border border-green-200">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-sm text-green-700 font-medium">Sistema Activo</span>
+            <span className="text-sm text-green-700 font-medium">
+              Sistema Activo
+            </span>
           </div>
         </div>
       </div>
