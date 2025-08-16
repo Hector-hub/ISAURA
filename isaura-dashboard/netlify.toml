@@ -1,0 +1,17 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+  VITE_GOOGLE_MAPS_API_KEY = "AIzaSyBxPxCHnZDfIQLz6c_LZtnSlIl0bqU_4YA"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm run dev"
+  port = 5173
+  publish = "dist"
