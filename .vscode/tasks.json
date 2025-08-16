@@ -9,6 +9,17 @@
       "group": "build",
       "isBackground": false,
       "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "dev server",
+      "command": "export PATH=\"/opt/homebrew/opt/node@20/bin:$PATH\" && npm run dev",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
     }
   ]
 }
