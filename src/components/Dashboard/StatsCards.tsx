@@ -5,7 +5,7 @@ export default function StatsCards() {
   const { alerts } = useAppSelector((state) => state.alerts);
 
   const activeAlerts = alerts.filter((a) => a.status === "active").length;
-  const criticalAlerts = alerts.filter((a) => a.severity === "critical").length;
+  const criticalAlerts = 7; // Fijo en 7 como solicitado
   const avgResponseTime = "8.5"; // Mock data
   const riskZones = "12"; // Mock data
 

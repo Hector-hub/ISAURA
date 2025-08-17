@@ -232,15 +232,44 @@ export const generateMockAlerts = (count: number = 20): Alert[] => {
 export const generateHeatmapData = () => {
   const data = [];
 
-  for (let i = 0; i < 100; i++) {
-    const district = faker.helpers.arrayElement(santoDoringoDistricts);
-    const lat = district.lat + (faker.number.float() - 0.5) * 0.1;
-    const lng = district.lng + (faker.number.float() - 0.5) * 0.1;
+  // Coordenadas específicas de las alertas reales con alta intensidad
+  const alertLocations = [
+    { lat: 18.482447, lng: -69.945985, intensity: 0.9 }, // Pinar de Rio
+    { lat: 18.5071711, lng: -69.8820031, intensity: 0.8 }, // Haina - Residencial
+    { lat: 18.52, lng: -69.92, intensity: 0.7 }, // Problema acueducto
+    { lat: 18.4861, lng: -69.9312, intensity: 0.8 }, // Centro de Santo Domingo
+    { lat: 18.5029, lng: -69.8547, intensity: 0.6 }, // El Corozo
+  ];
 
+  // Agregar puntos de alta intensidad en las ubicaciones de alertas reales
+  alertLocations.forEach(location => {
+    // Punto principal con alta intensidad
+    data.push(location);
+    
+    // Agregar puntos alrededor para crear efecto de zona caliente
+    for (let i = 0; i < 8; i++) {
+      const angle = (i * Math.PI * 2) / 8;
+      const radius = 0.01; // Radio pequeño para mantener la zona concentrada
+      
+      data.push({
+        lat: location.lat + Math.cos(angle) * radius,
+        lng: location.lng + Math.sin(angle) * radius,
+        intensity: location.intensity * 0.7, // Intensidad reducida para los puntos circundantes
+      });
+    }
+  });
+
+  // Llenar el resto del mapa con puntos de intensidad más baja
+  for (let i = 0; i < 60; i++) {
+    const district = faker.helpers.arrayElement(santoDoringoDistricts);
+    const lat = district.lat + (faker.number.float() - 0.5) * 0.15;
+    const lng = district.lng + (faker.number.float() - 0.5) * 0.15;
+
+    // Intensidad base más baja para no competir con las zonas de alerta
     data.push({
       lat,
       lng,
-      intensity: faker.number.float({ min: 0.1, max: 1 }),
+      intensity: faker.number.float({ min: 0.1, max: 0.4 }),
     });
   }
 

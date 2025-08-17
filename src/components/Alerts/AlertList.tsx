@@ -155,8 +155,6 @@ export default function AlertList() {
                     isSelected
                       ? "border-sky-500 bg-sky-50 shadow-md"
                       : "border-gray-200 hover:border-gray-300"
-                  } ${
-                    alert.severity === "critical" ? "animate-pulse-red" : ""
                   }`}
                 >
                   {/* Header */}
