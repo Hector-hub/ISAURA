@@ -4,8 +4,10 @@ import { AlertTriangle, Clock, MapPin } from "lucide-react";
 export default function StatsCards() {
   const { alerts } = useAppSelector((state) => state.alerts);
 
-  const activeAlerts = alerts.filter((a) => a.status === "active").length;
-  const criticalAlerts = 2; // Fijo en 7 como solicitado
+  const activeAlerts = alerts.filter(
+    (a) => a.status === "active" || a.status === "investigating"
+  ).length;
+  const criticalAlerts = 1; // Fijo en 7 como solicitado
   const avgResponseTime = "8.5"; // Mock data
   const riskZones = "12"; // Mock data
 
