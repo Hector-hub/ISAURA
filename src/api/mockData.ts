@@ -5,7 +5,7 @@ import { Alert } from "../store/slices/alertsSlice";
 const realAlertsData = [
   {
     post_id: "1953815937972404231",
-    date: "Sun, 02 Feb 2025 18:15:00 GMT",
+    date: "Thu, 08 Aug 2025 18:15:00 GMT",
     author: "@CarmenO26657205",
     content:
       "Paso elevado entre Av. Winston Churchill y Av. John F. Kennedy severamente agrietado. Riesgo de falla estructural inminente. ¡Jet Set necesita otro préstamo para el desastre! #InfraestructuraEnRiesgo #SantoDomingo",
@@ -17,7 +17,7 @@ const realAlertsData = [
   },
   {
     post_id: "1910293459056947325",
-    date: "Fri, 13 Apr 2024 13:45:00 GMT",
+    date: "Thu, 10 Apr 2025 13:45:00 GMT",
     author: "@HazimNoelia",
     content:
       "El Puente Francisco del Rosario Sánchez (Puente de la 17) está en condición crítica, con deterioro visible que genera temores de colapso. ¡Acción urgente necesaria! #SantoDomingo #Colapso",
