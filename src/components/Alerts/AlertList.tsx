@@ -106,7 +106,7 @@ export default function AlertList() {
       <div className="p-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900">
-            Alertas Activas ({filteredAlerts.length})
+            Alertas Registradas ({filteredAlerts.length})
           </h2>
           <div className="flex space-x-1">
             {["critical", "high", "medium", "low"].map((severity) => {
