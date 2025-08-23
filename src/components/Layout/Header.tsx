@@ -32,9 +32,15 @@ export default function Header() {
       <div className="flex items-center justify-between">
         {/* Left Section */}
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2 text-sm text-gray-500">
-            <MapPin className="w-4 h-4" />
-            <span>Santo Domingo, RD</span>
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
+              <h1 className="text-2xl font-bold text-blue-900">ISAURA</h1>
+            </div>
+            <div className="h-6 w-px bg-gray-300"></div>
+            <div className="flex items-center space-x-2 text-sm text-gray-500">
+              <MapPin className="w-4 h-4" />
+              <span>Santo Domingo, RD</span>
+            </div>
           </div>
         </div>
 

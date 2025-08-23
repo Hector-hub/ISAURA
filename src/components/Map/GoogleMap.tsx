@@ -30,8 +30,16 @@ export default function GoogleMap({ className = "" }: GoogleMapProps) {
   // Flag para ignorar eventos disparados programáticamente
   const programmaticChangeRef = useRef(false);
 
+  // Estados para zoom automático cíclico
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const [currentAlertIndex, setCurrentAlertIndex] = useState(0);
+  
+  // Refs para el ciclo automático
+  const cycleIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const userInteractionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isZoomedInRef = useRef(false);
 
   const { center, zoom, heatmapData, showHeatmap } = useAppSelector(
     (state) => state.map
@@ -86,8 +94,42 @@ export default function GoogleMap({ className = "" }: GoogleMapProps) {
 
         mapInstanceRef.current = map;
 
+        // Agregar listeners para detectar interacción del usuario
+        const dragListener = map.addListener("dragstart", () => {
+          setIsUserInteracting(true);
+          if (userInteractionTimeoutRef.current) {
+            clearTimeout(userInteractionTimeoutRef.current);
+          }
+          userInteractionTimeoutRef.current = setTimeout(() => {
+            setIsUserInteracting(false);
+          }, 5000); // 5 segundos sin interacción
+        });
+
+        const zoomListener = map.addListener("zoom_changed", () => {
+          setIsUserInteracting(true);
+          if (userInteractionTimeoutRef.current) {
+            clearTimeout(userInteractionTimeoutRef.current);
+          }
+          userInteractionTimeoutRef.current = setTimeout(() => {
+            setIsUserInteracting(false);
+          }, 5000);
+        });
+
+        const clickListener = map.addListener("click", () => {
+          setIsUserInteracting(true);
+          if (userInteractionTimeoutRef.current) {
+            clearTimeout(userInteractionTimeoutRef.current);
+          }
+          userInteractionTimeoutRef.current = setTimeout(() => {
+            setIsUserInteracting(false);
+          }, 5000);
+        });
+
+        // Agregar a la lista de listeners para cleanup
+        listenersRef.current.push(dragListener, zoomListener, clickListener);
+
         // No sincronizar center/zoom al store para no interferir con el usuario
-        listenersRef.current = [];
+        listenersRef.current = [...listenersRef.current];
 
         setIsLoaded(true);
       })
@@ -238,6 +280,63 @@ export default function GoogleMap({ className = "" }: GoogleMapProps) {
       });
     }
   }, [heatmapData, showHeatmap, isLoaded]);
+
+  // Ciclo automático de alertas
+  useEffect(() => {
+    if (!isLoaded || !mapInstanceRef.current || filteredAlerts.length === 0) {
+      return;
+    }
+
+    const startAutoCycle = () => {
+      if (cycleIntervalRef.current) {
+        clearInterval(cycleIntervalRef.current);
+      }
+
+      cycleIntervalRef.current = setInterval(() => {
+        if (!isUserInteracting && mapInstanceRef.current) {
+          const alert = filteredAlerts[currentAlertIndex];
+          if (alert) {
+            const map = mapInstanceRef.current;
+            
+            if (!isZoomedInRef.current) {
+              // Zoom in a la alerta
+              map.panTo({ lat: alert.location.lat, lng: alert.location.lng });
+              setTimeout(() => {
+                map.setZoom(16);
+                isZoomedInRef.current = true;
+              }, 1000);
+            } else {
+              // Zoom out y pasar a la siguiente alerta
+              map.setZoom(11);
+              setTimeout(() => {
+                setCurrentAlertIndex((prevIndex) => 
+                  (prevIndex + 1) % filteredAlerts.length
+                );
+                isZoomedInRef.current = false;
+              }, 1000);
+            }
+          }
+        }
+      }, 3000); // Cambio cada 3 segundos
+    };
+
+    if (!isUserInteracting) {
+      startAutoCycle();
+    } else {
+      if (cycleIntervalRef.current) {
+        clearInterval(cycleIntervalRef.current);
+      }
+    }
+
+    return () => {
+      if (cycleIntervalRef.current) {
+        clearInterval(cycleIntervalRef.current);
+      }
+      if (userInteractionTimeoutRef.current) {
+        clearTimeout(userInteractionTimeoutRef.current);
+      }
+    };
+  }, [isLoaded, filteredAlerts, currentAlertIndex, isUserInteracting]);
 
   // Helpers
   const getTimeAgo = (date: Date) => {

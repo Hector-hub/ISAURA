@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Escudo exterior -->
+  <path d="M200 50 L350 100 L350 250 Q350 350 200 450 Q50 350 50 250 L50 100 Z" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="8"/>
+  
+  <!-- Fondo blanco del escudo -->
+  <path d="M200 70 L330 110 L330 240 Q330 330 200 420 Q70 330 70 240 L70 110 Z" fill="white"/>
+  
+  <!-- Ondas de alerta/radar naranja -->
+  <circle cx="200" cy="180" r="80" fill="none" stroke="#ff6b35" stroke-width="12"/>
+  <circle cx="200" cy="180" r="60" fill="none" stroke="#ff6b35" stroke-width="10"/>
+  <circle cx="200" cy="180" r="40" fill="none" stroke="#ff6b35" stroke-width="8"/>
+  
+  <!-- Triángulo de alerta -->
+  <path d="M200 140 L220 180 L180 180 Z" fill="#ff6b35"/>
+  
+  <!-- Olas de agua azul -->
+  <path d="M120 280 Q140 260 160 280 Q180 300 200 280 Q220 260 240 280 Q260 300 280 280 L280 350 Q280 380 200 400 Q120 380 120 350 Z" fill="#0ea5e9"/>
+  <path d="M130 290 Q150 270 170 290 Q190 310 210 290 Q230 270 250 290 Q270 310 270 330 Q270 360 200 380 Q130 360 130 330 Z" fill="#0284c7"/>
+  
+  <!-- Casa/edificio -->
+  <rect x="185" y="300" width="30" height="25" fill="#1e3a8a"/>
+  <path d="M180 300 L200 285 L220 300 Z" fill="#1e3a8a"/>
+</svg>
